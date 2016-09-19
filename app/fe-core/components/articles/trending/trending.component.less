@@ -1,0 +1,304 @@
+.featured-tag {
+  background-color: @masterBrandColor;
+  color: @white;
+  font-size: 10px;
+  border-radius: 3px;
+  padding: 5px 15px;
+  margin-right: 8px;
+  position: relative;
+  bottom: 0;
+  z-index: 1;
+  &-large {
+    i {
+      font-size: 26px;
+      margin: 20px 15px 2px;
+    }
+    font-size: 10px;
+    text-align: center;
+    background-color: @masterBrandColor;
+    color: @white;
+    position: absolute;
+    right: 0;
+    width: 70px;
+    height: 85px;
+    box-shadow: inset 1.5px 2.6px 0 0 rgba(0, 0, 0, 0.08);
+    z-index: 1;
+  }
+  &-large .vr {
+    height: 114px;
+    width: 10px;
+    top: -15px;
+    left: -10px;
+    background-color: @white;
+    box-shadow: 3px 0 3px -3px @black;
+    position: absolute;
+  }
+}
+
+@media @fluid {
+  .featured-tag {
+    top: 0;
+  }
+
+  .featured-tag-large {
+    display: none;
+  }
+}
+
+.art-hdr, .st_sharethis_large, .share-buttons {
+  display: inline;
+  z-index: 1;
+  @media @fluid {
+    top: 0;
+  }
+}
+
+.art-hdr {
+  vertical-align: middle;
+  @media @fluid {
+    span {
+      display: none;
+    }
+  }
+  .st_sharethis_large, .share-buttons {
+    display: inline;
+    @media @fluid {
+      font-size: 15px;
+    }
+    i {
+      padding: 0 3px;
+    }
+    .fa-facebook {
+      color: @facebook;
+    }
+    .fa-twitter {
+      color: @twitter;
+    }
+    .fa-linkedin {
+      color: @linkedin;
+    }
+    .fa-fontawesome-webfont {
+      color: @googlePlus;
+    }
+  }
+}
+
+.margin {
+  margin-left: 3px;
+  position: relative;
+  top: 2px;
+}
+
+.trending {
+  width: 610px;
+  font-family: @globalFont;
+  @media @fluid {
+    width: 100%;
+  }
+  &-hr-title {
+    background-color: @strokeGrey;
+    width: 610px;
+    height: 1px;
+    margin: 0 auto;
+    &-bottom {
+      background-color: @strokeGrey;
+      width: 610px;
+      height: 1px;
+      margin-bottom: 25px;
+      @media @fluid {
+        width: 100%;
+      }
+    }
+    @media @fluid {
+      width: 100%;
+    }
+  }
+  &-hr {
+    background-color: @strokeGrey;
+    width: 610px;
+    height: 1px;
+    margin-bottom: 15px;
+    @media @fluid {
+      display: none;
+    }
+  }
+  &-hr-responsive {
+    background-color: @strokeGrey;
+    width: 610px;
+    height: 1px;
+    margin-bottom: 20px;
+    display: none;
+    @media @fluid {
+      display: block;
+      width: 100%;
+    }
+  }
+  &-main-title {
+    .globalDefaultModFont(24px, 800, @textEmphasisGrey);
+    line-height: 25px;
+    text-align: center;
+    border-bottom: solid @masterBrandColor 4px;
+    width: 240px;
+    margin: 25px auto;
+    padding-bottom: 3px;
+  }
+  &-article {
+    width: 100%;
+    position: relative;
+    .flexDisplay;
+    .flexDirection(column);
+    .flexJustify(space-between);
+    a {
+      color: @black;
+    }
+    &:hover {
+      a {
+        color: @masterBrandColor;
+      }
+      .trending-article-content {
+        color: @black;
+      }
+      .trending-article-read-more {
+        color: @black;
+      }
+    }
+    &-title {
+      .globalDefaultFont(32px, 800);
+      text-align: left;
+      margin-top: 15px;
+      &-short {
+        .globalDefaultFont(32px, 800);
+        text-align: left;
+        margin-top: 20px;
+        width: 88%;
+      }
+    }
+    &-image {
+      width: 140px;
+      height: 100px;
+      background-clip: padding-box;
+      left: 0;
+      background-size: cover !important;
+      background-repeat: no-repeat;
+      display: inline-block;
+      float: left;
+      margin-top: 15px;
+    }
+    &-content {
+      .globalDefaultFont(16px, 400);
+      margin-top: 10px;
+      position: relative;
+      line-height: 1.2;
+      text-align: left;
+      margin-bottom: 20px;
+      width: 75%;
+      //height override for .line-clamp height calculation
+      height: 100px !important;
+      .line-clamp;
+      .line-clamp-5;
+      left: 10px;
+    }
+    &-read-more {
+      .globalDefaultModFont(16px, 800, @masterBrandColor);
+      margin-bottom: 15px;
+      text-align: left;
+      display: inline-block;
+    }
+  }
+}
+
+.trending-small {
+  width: 100%;
+  font-family: @globalFont;
+  &-hr-title {
+    background-color: @strokeGrey;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 15px;
+  }
+  &-hr {
+    background-color: @strokeGrey;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 15px
+  }
+  &-hr-responsive {
+    background-color: @strokeGrey;
+    width: 100%;
+    height: 1px;
+    margin: 0 auto;
+    display: none;
+  }
+  &-container {
+    @media @fluid {
+      width: 100%;
+    }
+    &-main-title {
+      .globalDefaultModFont(18px, 800, @textEmphasisGrey);
+      line-height: 18px;
+      text-align: center;
+      border-bottom: solid @masterBrandColor 4px;
+      width: 180px;
+      padding-bottom: 3px;
+      position: relative;
+      margin: 0 auto 15px;
+    }
+  }
+  &-article {
+    width: 100%;
+    position: relative;
+    .flexDisplay;
+    .flexDirection(column);
+    .flexJustify(space-between);
+    a {
+      color: @black;
+    }
+    &:hover {
+      a {
+        color: @masterBrandColor;
+      }
+      .trending-small-article-content {
+        color: @black;
+      }
+      .trending-small-article-read-more {
+        color: @black;
+      }
+    }
+    &-title {
+      .globalDefaultFont(18px, 800);
+      text-align: left;
+      margin-top: 10px;
+    }
+    &-image {
+      width: 100px;
+      height: 56px;
+      background-clip: padding-box;
+      left: 0;
+      background-size: cover !important;
+      background-repeat: no-repeat;
+      display: inline-block;
+      float: left;
+      margin-top: 15px;
+    }
+    &-content {
+      .globalDefaultFont(14px, 400);
+      margin-top: 10px;
+      position: relative;
+      line-height: 1.2;
+      text-align: left;
+      margin-bottom: 15px;
+      width: ~"calc(90% - 70px)";
+      //height override for .line-clamp height calculation
+      height: 65px !important;
+      .line-clamp;
+      .line-clamp-4;
+      left: 10px;
+    }
+    &-read-more {
+      .globalDefaultModFont(16px, 800, @masterBrandColor);
+      margin-bottom: 15px;
+      text-align: left;
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<h1>{{title}}</h1>
+<a routerLink="/dashboard">Dashboard</a>
+<a routerLink="/players">Players</a>
+<a routerLink="/test">Test</a>
+<a [routerLink]="['/detail', playerId]">Player Detail</a>
+<router-outlet></router-outlet>

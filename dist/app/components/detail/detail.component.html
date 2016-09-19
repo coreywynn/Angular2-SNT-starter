@@ -1,0 +1,19 @@
+<div *ngIf="hero">
+  <h2>{{hero.name}} details!</h2>
+  <div><label>id: </label>{{hero.id}}</div>
+  <div>
+    <label>name: </label>
+  </div>
+  <button (click)="goBack()">Back</button>
+</div>
+
+<!-- <heroes-mini-detail></heroes-mini-detail> -->
+
+<div *ngIf="selectedHero">
+  <h2>
+    {{selectedHero.name | uppercase}} is my hero
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+
+<test-component></test-component>

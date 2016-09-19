@@ -3,13 +3,12 @@ const del = require('del');
 const Builder = require('systemjs-builder');
 const typescript = require('gulp-typescript');
 const tscConfig = require('./tsconfig.json');
-const browserSync = require('browser-sync');
-const historyApiFallback = require('connect-history-api-fallback');
+const connect = require('gulp-connect');
+const history = require('connect-history-api-fallback');
 const concat = require('gulp-concat');
 const less = require('gulp-less');
 const cleanCSS = require('gulp-clean-css');
 // const minify = require('gulp-minify');
-const reload = browserSync.reload;
 const rename = require('gulp-rename'); //for dev
 
 // clean the contents of the distribution directory
@@ -123,13 +122,11 @@ gulp.task('less', ['clean'], function() {
         .pipe(gulp.dest('dist/app/global/stylesheets'));
 });
 
-// Run browsersync for development
+// Run gulp connect for development
 gulp.task('serve', ['build'], function() {
-  browserSync({
-    server: {
-      baseDir: 'dist',
-        middleware: [ historyApiFallback() ]
-    }
+  connect.server({
+    root: 'dist',
+    livereload: true
   });
 
   gulp.watch(['app/**/*', 'index.html', 'master.css'], ['buildAndReload']);
@@ -137,7 +134,7 @@ gulp.task('serve', ['build'], function() {
 
 // gulp.task('build', ['compile', 'less', 'copy:libs', 'copy:assets', 'minify-css', 'compress']);
 gulp.task('build', ['compile', 'less', 'copy:libs', 'copy:assets', 'minify-css','bundle']);
-gulp.task('buildAndReload', ['build'], reload);
+gulp.task('buildAndReload', ['build']);
 
 gulp.task('build-tests', ['compile-tests', 'build']);
 gulp.task('test', ['build-tests']);
@@ -147,12 +144,15 @@ gulp.task('test', ['build-tests']);
   *BELOW ARE ALL FOR DEV BUILD TO RUN FOR DEVELOPMENT
   *
   */
-// Run browsersync for development
+// Run gulp connect for development
 gulp.task('dev', ['dev-build'], function() {
-  browserSync({
-    server: {
-      baseDir: 'dist',
-        middleware: [ historyApiFallback() ]
+  connect.server({
+    root: 'dist',
+    livereload: true,
+    middleware: function(connect, opt) {
+      return [
+        history({})
+      ]
     }
   });
 
@@ -169,17 +169,10 @@ gulp.task('copy:dev-assets', ['clean'], function() {
     .pipe(gulp.dest('dist'));
 
   return gulp.src(['app/**/*', 'master.css', '!app/**/*.ts', '!app/**/*.less'], { base : './' })
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist'))
+    .pipe(connect.reload());
 });
 gulp.task('dev-build', ['compile', 'less', 'copy:libs', 'copy:dev-assets', 'minify-css']);
-gulp.task('dev-buildAndReload', ['dev-build'], reload);
+gulp.task('dev-buildAndReload', ['dev-build']);
 
 gulp.task('default', ['build']);
-
-//GULP TASKS for TESTING
-gulp.task('compile-tests', ['clean'], function () {
-  return gulp
-    .src(['app/main.ts', 'app/**/*.spec.ts'])
-    .pipe(typescript(tscConfig.compilerOptions))
-    .pipe(gulp.dest('dist'));
-});

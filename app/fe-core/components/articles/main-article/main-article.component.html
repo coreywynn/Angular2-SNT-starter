@@ -1,0 +1,31 @@
+<div class="main-article large">
+    <span *ngIf="eventType">
+        <a [routerLink]="['Article-pages', {eventType: eventType, eventID: mainEventID}]">
+            <img class="main-article-image" [src]="mainImage" onerror="this.src='/app/public/no-image.svg'"/>
+            <div class="main-article-container">
+                <div class="main-article-container-title" [ngStyle]="titleFontSize">
+                    {{mainTitle}}
+                </div>
+                <div class="main-article-container-content">
+                    {{mainContent}}... <span class="main-article-container-content-read-more">Read More</span>
+                </div>
+            </div>
+        </a>
+    </span>
+</div>
+
+<div class="main-article small">
+    <span *ngIf="eventType">
+        <div class="main-article-container-keyword">{{keyword}} <span
+                class="main-article-container-date">{{timeStamp}}</span></div>
+        <a [routerLink]="['Article-pages', {eventType: eventType, eventID: mainEventID}]">
+            <div class="main-article-container-title" [ngStyle]="titleFontSize">
+                {{mainTitle}}
+            </div>
+            <div class="main-article-image" [style.background-image]="'url(' + mainImage + ')'"></div>
+            <div class="main-article-container-content-small">
+                {{mainContent}}
+            </div>
+        </a>
+    </span>
+</div>

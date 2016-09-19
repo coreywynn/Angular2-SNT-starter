@@ -1,0 +1,143 @@
+.stackSmall {
+    .col-xs-12;
+    margin: 0 0 10px;
+    float:left;
+    height: 56px;
+    .flexDisplay;
+    &-image {
+      width: 100px;
+      background-color: @masterBackgroundColor;
+      margin-right: 10px;
+      height: 56px;
+    }
+    &-text {
+      line-height: 1.2em;
+      text-align: left;
+      width: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 3.7em;
+      max-width: ~"calc(100% - 110px)";
+      &-keyword {
+         text-transform: uppercase;
+         margin-bottom: 5px;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         .globalDefaultModFont(10px, 800, @black);
+         > span:last-child{
+           margin-left: 5px;
+           color: @bulletGrey;
+           overflow: hidden;
+           height: 20px;
+         }
+      }
+      &-subHeadline {
+         .globalDefaultFont(12px, 400);
+         line-height: 1em;
+         p{
+           line-height: 1em;
+         }
+      }
+    }
+    &:hover{
+      color: @masterBrandColor;
+      .image-rectangle-hover div{
+        .flexDisplay;
+      }
+    }
+}
+.stackRows{
+  height: 385px;
+  overflow: hidden;
+  padding: 0 10px;
+  div:last-of-type {
+    .stacksmall {
+      margin-bottom:0;
+    }
+    .stackSmall-breakLine {
+      display:none;
+    }
+  }
+}
+@media @small-grid {
+  .stackSmall {
+    .col-xs-6;
+    &-image{
+      margin-right: 5px;
+    }
+    &-text{
+      width: 155px;
+      height: 74px;
+      &-keyword{
+        height: auto;
+        overflow: visible;
+      }
+    }
+  }
+  .stackRows {
+    height: 190px;
+  }
+}
+@media @tablet {
+  .stackSmall {
+    .col-xs-6;
+    margin-bottom: 15px;
+    &-text {
+      width: 180px;
+      height: 4.2em;
+      &-keyword {
+         > span:last-child{
+           height: 50px;
+         }
+      }
+    }
+  }
+  .stackRows{
+    height: 200px;
+    padding: 0;
+  }
+}
+@media @desktop {
+ .stackSmall {
+    &-text {
+      width: 200px;
+      &-keyword {
+        font-size: 10px;
+      }
+      &-subHeadline{
+        font-size: 14px;
+        p{
+          line-height: 1.2em;
+        }
+      }
+    }
+  }
+}
+
+@media @desktop-xl {
+  .stackRows{
+    height: auto;
+    overflow: visible;
+  }
+  .stackSmall {
+    margin: 20px 0;
+    width: 313px;
+    height: auto;
+    .col-xs-12;
+
+    &-image {
+      display: none;
+    }
+    &-text {
+      height: auto;
+      width: 313px;
+      max-width: 313px;
+    }
+    &-breakLine {
+      display: inline-block;
+      width: 315px;
+      height: 1px;
+      background-color: @highlightGrey;
+    }
+  }//stackSmall ends
+}

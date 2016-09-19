@@ -1,0 +1,44 @@
+<section *ngIf="totalImageCount > 0" [class.module-container]="isProfilePage"
+         [class.images-media-module]="isProfilePage && arraySize > 1"
+         [class.images-media-module-small]="isProfilePage && arraySize == 1"
+         (window:resize)="onResize($event)">
+    <module-header *ngIf="isProfilePage" [modHeadData]="modHeadData"></module-header>
+    <div class="carousel">
+        <loading-component *ngIf="!imageData"></loading-component>
+        <div *ngIf="imageData" class="container">
+            <a class='expand-button' (click)="modalExpand()">
+                <i class='fa {{expandIcon}}'></i>
+            </a>
+            <span [style.background-image]="backgroundImage"
+                  class="container-img">
+                <circle-button *ngIf="arraySize > 1" class="container-img-navigation" (scrollLeft)="left()"
+                               (scrollRight)="right()"></circle-button>
+            </span>
+            <div class="grey-bar">
+                <span class='grey-bar-counter'>
+                    <i class='fa fa-file-image-o'></i>
+                    {{imagesTitle}} <span class='grey-bar-counter-bold'>{{displayCounter}}</span> of
+                    <span class='grey-bar-counter-bold'>{{totalImageCount}}</span>
+                </span>
+                <span class="grey-bar-title">{{description}}</span>
+                <span class="grey-bar-credit">Provided By:
+                    <span class="grey-bar-credit-bold">{{imageCredit}}</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal" (keyup)="close($event)" [ngClass]="{'modal-open': expand == true}">
+    <div class="modal-exit" (click)="modalExpand()">X</div>
+    <div class="modal-container">
+        <span [style.background-image]="backgroundImage"
+              class="modal-container-img">
+            <circle-button class="modal-container-img-navigation" (scrollLeft)="left()"
+                           (scrollRight)="right()"></circle-button>
+        </span>
+        <div class="modal-grey-bar"><span class="modal-grey-bar-title">{{description}}</span><span
+                class="modal-grey-bar-credit">Provided By: <span
+                class="modal-grey-bar-credit-bold">{{imageCredit}}</span></span></div>
+    </div>
+</div>
